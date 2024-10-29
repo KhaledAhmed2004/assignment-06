@@ -1,74 +1,256 @@
+// "use client";
+// import React, { useState } from "react";
+// import Link from "next/link";
+// import { useMe } from "@/hooks/auth/useMe";
+// import { useLogout } from "@/hooks/auth/useLogout";
+// import { motion, AnimatePresence } from "framer-motion";
+// import { RxCross2 } from "react-icons/rx";
+// import { IoIosMenu } from "react-icons/io";
+
+// const Navbar = () => {
+//   const { user } = useMe();
+//   const { logout } = useLogout();
+
+//   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+//   const toggleMobileMenu = () => {
+//     setMobileMenuOpen(!isMobileMenuOpen);
+//   };
+
+//   return (
+//     <nav className="bg-white shadow-sm py-4">
+//       <div className="container mx-auto px-5">
+//         <div className="flex justify-between items-center">
+//           <div className="flex">
+//             <div className="flex-shrink-0 flex items-center">
+//               <Link
+//                 className="text-3xl font-bold text-primary-blue logo-text"
+//                 href="/"
+//               >
+//                 TechTalk
+//               </Link>
+//             </div>
+//           </div>
+
+//           {/* Desktop Menu */}
+//           <div className="hidden md:flex items-center gap-2 md:gap-3">
+//             <Link
+//               href="/about"
+//               className="text-primary-text font-medium  hover:text-primary-blue transition ease-in-out duration-300"
+//             >
+//               About
+//             </Link>
+//             <Link
+//               href="/contact"
+//               className="text-primary-text font-medium  hover:text-primary-blue transition ease-in-out duration-300"
+//             >
+//               Contact
+//             </Link>
+//             {user ? (
+//               <>
+//                 <Link
+//                   href="/feeds"
+//                   className="text-primary-text font-medium  hover:text-primary-blue transition ease-in-out duration-300"
+//                 >
+//                   Feeds
+//                 </Link>
+//                 <button
+//                   onClick={() => logout()}
+//                   className="px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
+//                     hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
+//                     "
+//                 >
+//                   Logout
+//                 </button>
+//               </>
+//             ) : (
+//               <Link
+//                 href="/sign-in"
+//                 className="px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
+//                   hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
+//                   "
+//               >
+//                 Login
+//               </Link>
+//             )}
+//           </div>
+
+//           {/* Mobile Menu Toggle Button */}
+//           <motion.button
+//             className="md:hidden text-2xl text-primary-blue focus:outline-none"
+//             onClick={toggleMobileMenu}
+//             whileHover={{ scale: 1.2 }}
+//             whileTap={{ scale: 0.9 }}
+//           >
+//             {isMobileMenuOpen ? <RxCross2 /> : <IoIosMenu />}
+//           </motion.button>
+//         </div>
+//       </div>
+
+//       {/* Mobile Menu */}
+//       <AnimatePresence>
+//         {isMobileMenuOpen && (
+//           <motion.div
+//             initial={{ opacity: 0, y: -20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             exit={{ opacity: 0, y: -20 }}
+//             transition={{ duration: 0.3 }}
+//             className="md:hidden bg-white px-5 py-4 space-y-4"
+//           >
+//             <Link
+//               href="/about"
+//               className="block text-primary-text font-medium hover:text-primary-blue transition ease-in-out duration-300"
+//               onClick={toggleMobileMenu}
+//             >
+//               About
+//             </Link>
+//             <Link
+//               href="/contact"
+//               className="block text-primary-text font-medium hover:text-primary-blue transition ease-in-out duration-300"
+//               onClick={toggleMobileMenu}
+//             >
+//               Contact
+//             </Link>
+//             {user ? (
+//               <>
+//                 <Link
+//                   href="/feeds"
+//                   className="block text-primary-text font-medium hover:text-primary-blue transition ease-in-out duration-300"
+//                   onClick={toggleMobileMenu}
+//                 >
+//                   Feeds
+//                 </Link>
+//                 <button
+//                   onClick={() => {
+//                     logout();
+//                     toggleMobileMenu();
+//                   }}
+//                   className="w-full text-left px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
+//                     hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
+//                     "
+//                 >
+//                   Logout
+//                 </button>
+//               </>
+//             ) : (
+//               <Link
+//                 href="/sign-in"
+//                 className="block w-full text-left px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
+//                   hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
+//                   "
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Login
+//               </Link>
+//             )}
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useMe } from "@/hooks/auth/useMe";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { motion, AnimatePresence } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosMenu } from "react-icons/io";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { usePathname } from "next/navigation";
+import Button from "./Button";
 
 const Navbar = () => {
   const { user } = useMe();
   const { logout } = useLogout();
-
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const pathname = usePathname();
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (darkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  };
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <nav className="bg-white shadow-sm py-4">
+    <nav className="bg-white dark:bg-gray-800 shadow-lg py-4 transition-colors duration-300">
       <div className="container mx-auto px-5">
         <div className="flex justify-between items-center">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <Link
-                className="text-3xl font-bold text-primary-blue logo-text"
-                href="/"
-              >
-                TechTalk
-              </Link>
-            </div>
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link
+              href="/"
+              className="text-3xl font-bold text-black dark:text-white transition"
+            >
+              TecQue
+            </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-2 md:gap-3">
-            <Link
-              href="/about"
-              className="text-primary-text font-medium  hover:text-primary-blue transition ease-in-out duration-300"
+          {/* Centered Desktop Menu */}
+          <div className="hidden md:flex items-center flex-1 justify-center gap-6">
+            {["/", "/about", "/contact"].map((path) => (
+              <Link
+                key={path}
+                href={path}
+                className={`text-black dark:text-white font-medium transition duration-300 relative group ${
+                  pathname === path ? "text-blue-600" : ""
+                }`}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-1 bg-blue-600 ${
+                    pathname === path ? "scale-x-100" : "scale-x-0"
+                  } group-hover:scale-x-100 transition-transform duration-300`}
+                ></span>
+              </Link>
+            ))}
+          </div>
+
+          {/* User Options and Dark Mode Toggle */}
+          <div className="hidden md:flex items-center gap-4">
+            <motion.button
+              onClick={toggleDarkMode}
+              className="text-2xl text-black dark:text-white transition-colors duration-300 hover:scale-110"
+              whileHover={{ rotate: 20 }}
+              whileTap={{ rotate: -20 }}
+              aria-label="Toggle Dark Mode"
             >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="text-primary-text font-medium  hover:text-primary-blue transition ease-in-out duration-300"
-            >
-              Contact
-            </Link>
+              {darkMode ? <MdLightMode /> : <MdDarkMode />}
+            </motion.button>
             {user ? (
-              <>
-                <Link
-                  href="/feeds"
-                  className="text-primary-text font-medium  hover:text-primary-blue transition ease-in-out duration-300"
-                >
-                  Feeds
-                </Link>
-                <button
-                  onClick={() => logout()}
-                  className="px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
-                    hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
-                    "
-                >
-                  Logout
-                </button>
-              </>
+              <button
+                onClick={() => logout()}
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-xl shadow-md transition duration-300 font-semibold"
+              >
+                Logout
+              </button>
             ) : (
               <Link
                 href="/sign-in"
-                className="px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
-                  hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
-                  "
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-xl shadow-md transition duration-300 font-semibold"
               >
                 Login
               </Link>
@@ -77,9 +259,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle Button */}
           <motion.button
-            className="md:hidden text-2xl text-primary-blue focus:outline-none"
+            className="md:hidden text-3xl text-black dark:text-white focus:outline-none"
             onClick={toggleMobileMenu}
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             {isMobileMenuOpen ? <RxCross2 /> : <IoIosMenu />}
@@ -94,55 +276,51 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white px-5 py-4 space-y-4"
+            transition={{ duration: 0.4 }}
+            className="md:hidden bg-white dark:bg-gray-800 px-5 py-4 rounded-b-lg space-y-4"
           >
-            <Link
-              href="/about"
-              className="block text-primary-text font-medium hover:text-primary-blue transition ease-in-out duration-300"
-              onClick={toggleMobileMenu}
-            >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="block text-primary-text font-medium hover:text-primary-blue transition ease-in-out duration-300"
-              onClick={toggleMobileMenu}
-            >
-              Contact
-            </Link>
+            {["/", "/about", "/contact"].map((path) => (
+              <Link
+                key={path}
+                href={path}
+                className={`block text-black dark:text-white font-medium transition duration-300 ${
+                  pathname === path ? "text-blue-600" : ""
+                }`}
+                onClick={toggleMobileMenu}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+              </Link>
+            ))}
             {user ? (
-              <>
-                <Link
-                  href="/feeds"
-                  className="block text-primary-text font-medium hover:text-primary-blue transition ease-in-out duration-300"
-                  onClick={toggleMobileMenu}
-                >
-                  Feeds
-                </Link>
-                <button
-                  onClick={() => {
-                    logout();
-                    toggleMobileMenu();
-                  }}
-                  className="w-full text-left px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
-                    hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
-                    "
-                >
-                  Logout
-                </button>
-              </>
+              <Button
+                className="font-semibold"
+                onClick={() => {
+                  logout();
+                  toggleMobileMenu();
+                }}
+              >
+                Logout
+              </Button>
             ) : (
               <Link
                 href="/sign-in"
-                className="block w-full text-left px-3 py-1 bg-primary-blue text-white rounded-md border border-primary-blue
-                  hover:bg-white hover:text-primary-blue hover:border-primary-blue transition ease-in-out duration-300
-                  "
+                className="block w-full text-left px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300 font-semibold"
                 onClick={toggleMobileMenu}
               >
                 Login
               </Link>
             )}
+            <motion.button
+              onClick={toggleDarkMode}
+              className="text-2xl text-white transition-colors duration-300 hover:scale-110"
+              whileHover={{ rotate: 20 }}
+              whileTap={{ rotate: -20 }}
+              aria-label="Toggle Dark Mode"
+            >
+              {darkMode ? <MdLightMode /> : <MdDarkMode />}
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
