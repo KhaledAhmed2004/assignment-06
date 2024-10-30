@@ -8,7 +8,8 @@ import {
   FaAmazonPay,
   FaUser,
 } from "react-icons/fa";
-import { BsSpeedometer } from "react-icons/bs";
+import { RxDashboard } from "react-icons/rx";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useLogout } from "../../hooks/auth/useLogout";
 import { usePathname } from "next/navigation";
@@ -71,8 +72,8 @@ export default function DashboardLayout({
         href={href}
         className={`flex items-center p-3 rounded-lg transition-colors font-medium ${
           pathname === href
-            ? "bg-secondary-background text-primary-blue"
-            : "text-secondary-text hover:bg-secondary-background hover:text-primary-blue"
+            ? "dark:bg-gray-700 bg-blue-200 text-blue-800  dark:text-white"
+            : "dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         }`}
       >
         <Icon className="mr-3" />
@@ -82,11 +83,10 @@ export default function DashboardLayout({
   );
 
   return (
-    <div className="flex min-h-screen bg-primary-background">
-      {" "}
+    <div className="flex min-h-screen dark:bg-gray-900">
       {/* Mobile Sidebar Toggle */}
       <motion.button
-        className="lg:hidden fixed top-2/4 right-4 z-20 p-2 bg-primary-blue text-white rounded-full shadow-lg"
+        className="lg:hidden fixed top-2/4 right-4 z-20 p-2 text-white rounded-full shadow-lg"
         onClick={toggleSidebar}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -97,7 +97,7 @@ export default function DashboardLayout({
       <AnimatePresence>
         {(isSidebarOpen || !isMobile) && (
           <motion.aside
-            className="absolute lg:static w-64 h-[calc(100vh-80px)] bg-primary-background shadow-lg overflow-auto rounded-lg z-50"
+            className="absolute lg:static w-64 h-[calc(100vh-80px)] dark:bg-gray-800 shadow-lg overflow-auto rounded-br-lg z-50"
             initial="closed"
             animate="open"
             exit="closed"
@@ -124,8 +124,7 @@ export default function DashboardLayout({
                 >
                   {user?.role === "admin" ? (
                     <>
-                      {" "}
-                      <NavItem href="/dashboard/admin" icon={BsSpeedometer} end>
+                      <NavItem href="/dashboard/admin" icon={RxDashboard} end>
                         Dashboard
                       </NavItem>
                       <NavItem
@@ -155,7 +154,7 @@ export default function DashboardLayout({
                     </>
                   ) : (
                     <>
-                      <NavItem href="/dashboard/user" icon={BsSpeedometer} end>
+                      <NavItem href="/dashboard/user" icon={RxDashboard} end>
                         Profile
                       </NavItem>
                       <NavItem href="/dashboard/user/my-posts" icon={CiFileOn}>
@@ -172,13 +171,13 @@ export default function DashboardLayout({
                 </motion.ul>
               </nav>
               <motion.div
-                className="mt-auto border-t border-secondary-background pt-4"
+                className="mt-auto border-t dark:border-gray-700 pt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
                 <motion.button
-                  className="flex items-center w-full p-3 rounded-lg bg-secondary-background text-secondary-text hover:bg-primary-blue hover:text-white transition-colors"
+                  className="flex items-center w-full p-3 rounded-lg dark:bg-gray-700 dark:text-gray-400 hover:text-white transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   disabled={isPending}
@@ -195,7 +194,7 @@ export default function DashboardLayout({
       {/* Main Content Area */}
       <main className="flex-1 overflow-y-auto">
         <motion.div
-          className="max-w-7xl mx-auto py-5 px-5"
+          className="max-w-7xl mx-auto py-5 px-5 dark:text-gray-200"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
