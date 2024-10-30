@@ -4,6 +4,8 @@ import Provider from "@/utils/Provider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
+import Spinner from "@/components/Spinner";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "TecQue",
@@ -22,7 +24,7 @@ export default function RootLayout({
           <Provider>
             <Navbar />
             <main className="flex-1 bg-gradient-to-r from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
-              {children}
+              <Suspense fallback={<Spinner />}>{children}</Suspense>
             </main>
             <Footer />
           </Provider>
