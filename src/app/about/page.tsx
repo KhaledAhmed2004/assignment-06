@@ -16,7 +16,7 @@ const AboutPage = () => {
       <section className="container mx-auto px-5">
         <div className="container mx-auto px-4 py-6 text-center">
           <motion.h1
-            className="text-4xl font-bold mb-4 text-primary-text dark:text-white"
+            className="text-4xl font-bold mb-4 dark:text-white"
             variants={fadeInUp}
             initial="initial"
             animate="animate"
@@ -25,7 +25,7 @@ const AboutPage = () => {
             About TechTalk
           </motion.h1>
           <motion.p
-            className="text-xl text-secondary-text dark:text-gray-400"
+            className="text-xl dark:text-gray-400"
             variants={fadeInUp}
             initial="initial"
             animate="animate"
@@ -39,7 +39,7 @@ const AboutPage = () => {
           <section className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h2
-                className="text-4xl font-bold text-primary-text dark:text-white mb-6"
+                className="text-4xl font-bold dark:text-white mb-6"
                 variants={fadeInUp}
                 initial="initial"
                 animate="animate"
@@ -48,14 +48,14 @@ const AboutPage = () => {
                 Our Story
               </motion.h2>
               <motion.p
-                className="text-lg text-secondary-text dark:text-gray-400 mb-8"
+                className="text-lg dark:text-gray-400 mb-8"
                 variants={fadeInUp}
                 initial="initial"
                 animate="animate"
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 At{" "}
-                <span className="text-primary-blue dark:text-blue-400 font-semibold">
+                <span className="dark:text-blue-400 font-semibold">
                   tacQue
                 </span>
                 , we believe in more than just providing services—we believe in
@@ -64,7 +64,7 @@ const AboutPage = () => {
                 making it fast, reliable, and accessible for everyone.
               </motion.p>
               <motion.p
-                className="text-lg text-secondary-text dark:text-gray-400 mb-8"
+                className="text-lg dark:text-gray-400 mb-8"
                 variants={fadeInUp}
                 initial="initial"
                 animate="animate"
@@ -75,13 +75,13 @@ const AboutPage = () => {
                 strive to deliver more than just solutions—we deliver a promise
                 of quality, trust, and a passion for pushing boundaries. At the
                 heart of{" "}
-                <span className="text-primary-blue dark:text-blue-400 font-semibold">
+                <span className="dark:text-blue-400 font-semibold">
                   tacQue
                 </span>
                 , it’s always been about you and your success.
               </motion.p>
               <motion.p
-                className="text-lg text-secondary-text dark:text-gray-400 mb-10"
+                className="text-lg dark:text-gray-400 mb-10"
                 variants={fadeInUp}
                 initial="initial"
                 animate="animate"
@@ -98,7 +98,7 @@ const AboutPage = () => {
 
       <section className="container mx-auto px-4 pb-6">
         <motion.h2
-          className="text-3xl font-bold text-center text-primary-text dark:text-white mb-8"
+          className="text-3xl font-bold text-center dark:text-white mb-8"
           variants={fadeInUp}
           initial="initial"
           animate="animate"
@@ -110,7 +110,7 @@ const AboutPage = () => {
           {[
             {
               icon: (
-                <FaRocket className="w-12 h-12 text-primary-blue dark:text-blue-400 mb-4 mx-auto" />
+                <FaRocket className="w-12 h-12 dark:text-blue-400 mb-4 mx-auto" />
               ),
               title: "Fast & Reliable",
               description:
@@ -118,7 +118,7 @@ const AboutPage = () => {
             },
             {
               icon: (
-                <FaUsers className="w-12 h-12 text-primary-blue dark:text-blue-400 mb-4 mx-auto" />
+                <FaUsers className="w-12 h-12 dark:text-blue-400 mb-4 mx-auto" />
               ),
               title: "Community Support",
               description:
@@ -126,7 +126,7 @@ const AboutPage = () => {
             },
             {
               icon: (
-                <FaTools className="w-12 h-12 text-primary-blue dark:text-blue-400 mb-4 mx-auto" />
+                <FaTools className="w-12 h-12 dark:text-blue-400 mb-4 mx-auto" />
               ),
               title: "Hands-On Tools",
               description:
@@ -134,7 +134,7 @@ const AboutPage = () => {
             },
             {
               icon: (
-                <FaGraduationCap className="w-12 h-12 text-primary-blue dark:text-blue-400 mb-4 mx-auto" />
+                <FaGraduationCap className="w-12 h-12 dark:text-blue-400 mb-4 mx-auto" />
               ),
               title: "Learning Resources",
               description:
@@ -151,10 +151,10 @@ const AboutPage = () => {
               transition={{ duration: 0.6, delay: 1.4 + index * 0.2 }}
             >
               {card.icon}
-              <h3 className="text-xl font-semibold text-center text-primary-text dark:text-white mb-2">
+              <h3 className="text-xl font-semibold text-center dark:text-white mb-2">
                 {card.title}
               </h3>
-              <p className="text-secondary-text dark:text-gray-400 text-center">
+              <p className="dark:text-gray-400 text-center">
                 {card.description}
               </p>
             </motion.div>
@@ -164,7 +164,7 @@ const AboutPage = () => {
 
       <section className="text-center pb-6">
         <motion.h2
-          className="text-3xl font-semibold mb-4 text-primary-text dark:text-white"
+          className="text-3xl font-semibold mb-4 dark:text-white"
           variants={fadeInUp}
           initial="initial"
           animate="animate"
@@ -173,7 +173,7 @@ const AboutPage = () => {
           Join Our Engineering Community
         </motion.h2>
         <motion.p
-          className="mb-8 text-secondary-text dark:text-gray-400"
+          className="mb-8 dark:text-gray-400"
           variants={fadeInUp}
           initial="initial"
           animate="animate"

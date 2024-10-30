@@ -1,25 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Provider from "@/utils/Provider";
-import Spinner from "@/components/Spinner";
-import { Suspense } from "react";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Navbar from "@/components/Navbar";
+import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "TechTalk",
-  description:
-    "A social platform for developers to share knowledge and connect with other developers.",
+  title: "TecQue",
+  description: "A platform for tech knowledge sharing.",
 };
 
 export default function RootLayout({
@@ -29,14 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <main className="min-h-screen flex flex-col justify-between">
+      <body className="antialiased h-full bg-gradient-to-r from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex flex-col h-screen">
           <Provider>
-            <Suspense fallback={<Spinner />}>{children}</Suspense>
+            <Navbar />
+            <main className="flex-1 bg-gradient-to-r from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
+              {children}
+            </main>
+            <Footer />
           </Provider>
-        </main>
+        </div>
+        <Toaster />
       </body>
     </html>
   );
