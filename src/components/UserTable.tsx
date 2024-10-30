@@ -1,136 +1,436 @@
+// // "use client";
+// // import React, { useState } from "react";
+// // import { Table, Button as AntButton, Modal } from "antd";
+// // import { FaPlus, FaRegPenToSquare, FaRegTrashCan } from "react-icons/fa6";
+// // import { useUsers } from "../hooks/users/useUsers";
+// // import { useDeleteUser } from "../hooks/users/useDeleteUser";
+// // import Spinner from "./Spinner";
+// // import ErrorMessage from "./ErrorMessage";
+// // import UserModal from "./modals/UserModal";
+
+// // // Define a User interface for type safety
+// // interface User {
+// //   _id: string;
+// //   name: string;
+// //   email: string;
+// //   role: string;
+// //   phone: string;
+// //   address: string;
+// // }
+
+// // const getRoleBadgeColor = (role: string) => {
+// //   switch (role) {
+// //     case "admin":
+// //       return "bg-primary-blue text-white";
+// //     case "user":
+// //       return "bg-primary-green text-white";
+// //     default:
+// //       return "bg-secondary-red text-white";
+// //   }
+// // };
+
+// // const UserTable: React.FC = () => {
+// //   const { users, error, isLoading } = useUsers();
+// //   const { deleteUser } = useDeleteUser();
+// //   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+// //   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
+// //   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+// //   const [userToDelete, setUserToDelete] = useState<User | null>(null);
+
+// //   if (isLoading) return <Spinner />;
+// //   if (error) return <ErrorMessage message={error.message} />;
+// //   if (!users.length) return <ErrorMessage message={"No Users Found"} />;
+
+// //   const columns = [
+// //     {
+// //       title: "Name",
+// //       dataIndex: "name",
+// //       key: "name",
+// //     },
+// //     {
+// //       title: "Email",
+// //       dataIndex: "email",
+// //       key: "email",
+// //     },
+// //     {
+// //       title: "Role",
+// //       dataIndex: "role",
+// //       key: "role",
+// //       render: (role: string) => (
+// //         <span
+// //           className={`px-2 py-1 rounded-full text-xs font-medium uppercase ${getRoleBadgeColor(
+// //             role
+// //           )}`}
+// //         >
+// //           {role}
+// //         </span>
+// //       ),
+// //     },
+// //     {
+// //       title: "Phone",
+// //       dataIndex: "phone",
+// //       key: "phone",
+// //     },
+// //     {
+// //       title: "Address",
+// //       dataIndex: "address",
+// //       key: "address",
+// //     },
+// //     {
+// //       title: "Actions",
+// //       key: "actions",
+// //       render: (_: unknown, user: User) => (
+// //         <div className="flex gap-2">
+// //           <AntButton
+// //             type="link"
+// //             onClick={() => {
+// //               setSelectedUser(user);
+// //               setModalIsOpen(true);
+// //             }}
+// //             icon={<FaRegPenToSquare />}
+// //           />
+// //           <AntButton
+// //             type="link"
+// //             onClick={() => {
+// //               setUserToDelete(user);
+// //               setIsConfirmDeleteOpen(true);
+// //             }}
+// //             icon={<FaRegTrashCan />}
+// //           />
+// //         </div>
+// //       ),
+// //     },
+// //   ];
+
+// //   const handleDelete = () => {
+// //     if (userToDelete) {
+// //       deleteUser(userToDelete._id);
+// //       setIsConfirmDeleteOpen(false);
+// //     }
+// //   };
+
+// //   return (
+// //     <div className="shadow overflow-x-auto rounded-lg">
+// //       <AntButton
+// //         type="primary"
+// //         onClick={() => {
+// //           setSelectedUser(null);
+// //           setModalIsOpen(true);
+// //         }}
+// //         icon={<FaPlus />}
+// //         style={{ marginBottom: 16 }}
+// //       >
+// //         Add User
+// //       </AntButton>
+// //       <Table
+// //         dataSource={users}
+// //         columns={columns}
+// //         rowKey="_id"
+// //         pagination={false}
+// //         className="bg-primary-background"
+// //       />
+// //       <UserModal
+// //         modalIsOpen={modalIsOpen}
+// //         setModalIsOpen={setModalIsOpen}
+// //         user={selectedUser}
+// //       />
+// //       <Modal
+// //         title="Confirm Deletion"
+// //         open={isConfirmDeleteOpen}
+// //         onOk={handleDelete}
+// //         onCancel={() => setIsConfirmDeleteOpen(false)}
+// //         okText="Yes, Delete"
+// //         cancelText="Cancel"
+// //       >
+// //         <p>Are you sure you want to delete this user?</p>
+// //       </Modal>
+// //     </div>
+// //   );
+// // };
+
+// // export default UserTable;
+
+// "use client";
+// import React, { useState } from "react";
+// import { Table, Button as AntButton, Modal, Tag } from "antd";
+// import { FaPlus, FaRegPenToSquare, FaRegTrashCan } from "react-icons/fa6";
+// import { useUsers } from "../hooks/users/useUsers";
+// import { useDeleteUser } from "../hooks/users/useDeleteUser";
+// import Spinner from "./Spinner";
+// import ErrorMessage from "./ErrorMessage";
+// import UserModal from "./modals/UserModal";
+
+// interface User {
+//   _id: string;
+//   name: string;
+//   email: string;
+//   role: string;
+//   phone: string;
+//   address: string;
+// }
+
+// const UserTable: React.FC = () => {
+//   const { users, error, isLoading } = useUsers();
+//   const { deleteUser } = useDeleteUser();
+//   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+//   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+//   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+//   const [userToDelete, setUserToDelete] = useState<User | null>(null);
+
+//   if (isLoading) return <Spinner />;
+//   if (error) return <ErrorMessage message={error.message} />;
+//   if (!users.length) return <ErrorMessage message={"No Users Found"} />;
+
+//   const columns = [
+//     {
+//       title: "Name",
+//       dataIndex: "name",
+//       key: "name",
+//     },
+//     {
+//       title: "Email",
+//       dataIndex: "email",
+//       key: "email",
+//     },
+//     {
+//       title: "Role",
+//       dataIndex: "role",
+//       key: "role",
+//       render: (role: string) => (
+//         <Tag color={role === "admin" ? "blue" : role === "user" ? "green" : "red"}>
+//           {role.toUpperCase()}
+//         </Tag>
+//       ),
+//     },
+//     {
+//       title: "Phone",
+//       dataIndex: "phone",
+//       key: "phone",
+//     },
+//     {
+//       title: "Address",
+//       dataIndex: "address",
+//       key: "address",
+//     },
+//     {
+//       title: "Actions",
+//       key: "actions",
+//       render: (_: unknown, user: User) => (
+//         <div className="flex gap-2">
+//           <AntButton
+//             type="link"
+//             onClick={() => {
+//               setSelectedUser(user);
+//               setModalIsOpen(true);
+//             }}
+//             icon={<FaRegPenToSquare />}
+//           />
+//           <AntButton
+//             type="link"
+//             onClick={() => {
+//               setUserToDelete(user);
+//               setIsConfirmDeleteOpen(true);
+//             }}
+//             icon={<FaRegTrashCan />}
+//           />
+//         </div>
+//       ),
+//     },
+//   ];
+
+//   const handleDelete = () => {
+//     if (userToDelete) {
+//       deleteUser(userToDelete._id);
+//       setIsConfirmDeleteOpen(false);
+//     }
+//   };
+
+//   return (
+//     <div className="shadow overflow-x-auto rounded-lg">
+//       <AntButton
+//         type="primary"
+//         onClick={() => {
+//           setSelectedUser(null);
+//           setModalIsOpen(true);
+//         }}
+//         icon={<FaPlus />}
+//         style={{ marginBottom: 16 }}
+//       >
+//         Add User
+//       </AntButton>
+//       <Table
+//         dataSource={users}
+//         columns={columns}
+//         rowKey="_id"
+//         pagination={false}
+//         className="bg-primary-background"
+//       />
+//       <UserModal
+//         modalIsOpen={modalIsOpen}
+//         setModalIsOpen={setModalIsOpen}
+//         user={selectedUser}
+//       />
+//       <Modal
+//         title="Confirm Deletion"
+//         open={isConfirmDeleteOpen}
+//         onOk={handleDelete}
+//         onCancel={() => setIsConfirmDeleteOpen(false)}
+//         okText="Yes, Delete"
+//         cancelText="Cancel"
+//       >
+//         <p>Are you sure you want to delete this user?</p>
+//       </Modal>
+//     </div>
+//   );
+// };
+
+// export default UserTable;
+
 "use client";
 import React, { useState } from "react";
+import { Table, Button as AntButton, Modal, Tag } from "antd";
 import { FaPlus, FaRegPenToSquare, FaRegTrashCan } from "react-icons/fa6";
 import { useUsers } from "../hooks/users/useUsers";
 import { useDeleteUser } from "../hooks/users/useDeleteUser";
-import Button from "./Button";
 import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
 import UserModal from "./modals/UserModal";
 
-const getRoleBadgeColor = (role: string) => {
-  switch (role) {
-    case "admin":
-      return "bg-primary-blue text-white";
-    case "user":
-      return "bg-primary-green text-white";
-    default:
-      return "bg-secondary-red text-white";
-  }
-};
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  phone: string;
+  address: string;
+  isBlocked: boolean; // Using isBlocked instead of status
+}
 
 const UserTable: React.FC = () => {
   const { users, error, isLoading } = useUsers();
   const { deleteUser } = useDeleteUser();
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+  const [userToDelete, setUserToDelete] = useState<User | null>(null);
 
   if (isLoading) return <Spinner />;
   if (error) return <ErrorMessage message={error.message} />;
   if (!users.length) return <ErrorMessage message={"No Users Found"} />;
 
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
+      render: (role: string) => (
+        <Tag
+          color={role === "admin" ? "blue" : role === "user" ? "green" : "red"}
+        >
+          {role.toUpperCase()}
+        </Tag>
+      ),
+    },
+    {
+      title: "Status",
+      dataIndex: "isBlocked",
+      key: "status",
+      render: (isBlocked: boolean) => (
+        <Tag color={isBlocked ? "volcano" : "green"}>
+          {isBlocked ? "Blocked" : "Active"}
+        </Tag>
+      ),
+    },
+    {
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+
+    {
+      title: "Actions",
+      key: "actions",
+      render: (_: unknown, user: User) => (
+        <div className="flex gap-2">
+          <AntButton
+            type="link"
+            onClick={() => {
+              setSelectedUser(user);
+              setModalIsOpen(true);
+            }}
+            icon={<FaRegPenToSquare />}
+          />
+          <AntButton
+            type="link"
+            onClick={() => {
+              setUserToDelete(user);
+              setIsConfirmDeleteOpen(true);
+            }}
+            icon={<FaRegTrashCan />}
+          />
+        </div>
+      ),
+    },
+  ];
+
+  const handleDelete = () => {
+    if (userToDelete) {
+      deleteUser(userToDelete._id);
+      setIsConfirmDeleteOpen(false);
+    }
+  };
+
   return (
     <div className="shadow overflow-x-auto rounded-lg">
-      <table className="min-w-full text-sm text-secondary-text">
-        <thead className="bg-secondary-background text-xs uppercase font-medium text-primary-text">
-          <tr>
-            <th></th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left tracking-wider whitespace-nowrap"
-            >
-              Name
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left tracking-wider whitespace-nowrap"
-            >
-              Email
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left tracking-wider whitespace-nowrap"
-            >
-              Role
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left tracking-wider whitespace-nowrap"
-            >
-              Phone
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left tracking-wider whitespace-nowrap"
-            >
-              Address
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left tracking-wider whitespace-nowrap flex items-center gap-3"
-            >
-              Actions
-              <Button
-                className="text-sm py-2 px-2"
-                onClick={() => {
-                  setSelectedUser(null);
-                  setModalIsOpen(true);
-                }}
-              >
-                <FaPlus />
-              </Button>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-primary-background">
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {users.map((user: any, index: number) => (
-            <tr
-              key={user._id}
-              className={`${
-                index % 2 === 0 ? "bg-secondary-background bg-opacity-20" : ""
-              }`}
-            >
-              <td className="pl-4">{index + 1}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span
-                  className={`px-2 py-1 rounded-full text-xs font-medium uppercase ${getRoleBadgeColor(
-                    user.role
-                  )}`}
-                >
-                  {user.role}
-                </span>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.phone}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{user.address}</td>
-              <td className="px-6 py-4 whitespace-nowrap flex gap-2 items-center">
-                <Button
-                  className="text-sm py-1.5 px-1.5"
-                  onClick={() => {
-                    setSelectedUser(user);
-                    setModalIsOpen(true);
-                  }}
-                >
-                  <FaRegPenToSquare />
-                </Button>
-                <Button
-                  className="text-sm py-1.5 px-1.5"
-                  onClick={() => deleteUser(user._id)}
-                >
-                  <FaRegTrashCan />
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <AntButton
+        type="primary"
+        onClick={() => {
+          setSelectedUser(null);
+          setModalIsOpen(true);
+        }}
+        icon={<FaPlus />}
+        style={{ marginBottom: 16 }}
+      >
+        Add User
+      </AntButton>
+      <Table
+        dataSource={users}
+        columns={columns}
+        rowKey="_id"
+        pagination={false}
+        className="bg-primary-background"
+      />
       <UserModal
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
         user={selectedUser}
       />
+      <Modal
+        title="Confirm Deletion"
+        open={isConfirmDeleteOpen}
+        onOk={handleDelete}
+        onCancel={() => setIsConfirmDeleteOpen(false)}
+        okText="Yes, Delete"
+        cancelText="Cancel"
+      >
+        <p>Are you sure you want to delete this user?</p>
+      </Modal>
     </div>
   );
 };
