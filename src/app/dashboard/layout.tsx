@@ -1,17 +1,10 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import {
-  FaSignOutAlt,
-  FaBars,
-  FaTimes,
-  FaAmazonPay,
-  FaUser,
-} from "react-icons/fa";
+import { FaBars, FaTimes, FaAmazonPay, FaUser } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useLogout } from "../../hooks/auth/useLogout";
 import { usePathname } from "next/navigation";
 import { LuActivitySquare } from "react-icons/lu";
 import { CiFileOn } from "react-icons/ci";
@@ -31,7 +24,6 @@ export default function DashboardLayout({
 }>) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { isPending, logout } = useLogout();
   const pathname = usePathname();
   const { user } = useMe();
   const handleResize = useCallback(() => {
@@ -170,23 +162,6 @@ export default function DashboardLayout({
                   )}
                 </motion.ul>
               </nav>
-              <motion.div
-                className="mt-auto border-t dark:border-gray-700 pt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                <motion.button
-                  className="flex items-center w-full p-3 rounded-lg dark:bg-gray-700 dark:text-gray-400 hover:text-white transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  disabled={isPending}
-                  onClick={() => logout()}
-                >
-                  <FaSignOutAlt className="mr-3" />
-                  Sign Out
-                </motion.button>
-              </motion.div>
             </div>
           </motion.aside>
         )}
