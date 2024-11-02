@@ -108,7 +108,7 @@ const ManageUsers = () => {
   };
   return (
     <section className="py-3 lg:py-5">
-      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
+      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
         Manage Users
       </h2>
       <div className="shadow overflow-x-auto rounded-lg">
@@ -127,8 +127,7 @@ const ManageUsers = () => {
           dataSource={users}
           columns={columns}
           rowKey="_id"
-          pagination={false}
-          className="bg-primary-background"
+          pagination={{ pageSize: 10 }}
         />
         <UserModal
           modalIsOpen={modalIsOpen}
