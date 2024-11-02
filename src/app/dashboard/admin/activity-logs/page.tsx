@@ -1,11 +1,9 @@
 "use client";
 import { useUsers } from "@/hooks/users/useUsers";
-import { Table, Tag, Typography } from "antd";
+import { Table, Tag } from "antd";
 import ErrorMessage from "../../../../components/ErrorMessage";
 import Spinner from "../../../../components/Spinner";
 import { format } from "date-fns";
-
-const { Title } = Typography;
 
 // Define User type based on the expected data shape
 interface User {
@@ -80,9 +78,9 @@ const PaymentTable = () => {
 
   return (
     <section>
-      <Title level={2} className="text-center text-primary-text mb-5 lg:mb-8">
+      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
         Activity Logs
-      </Title>
+      </h2>
       <Table
         columns={columns}
         dataSource={dataSource}
