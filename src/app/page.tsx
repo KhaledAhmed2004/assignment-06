@@ -12,7 +12,7 @@ const HomePage = () => {
   const { posts, isLoading, fetchNextPage, hasNextPage } = usePosts();
 
   return (
-    <div className="container mx-auto bg-primary-background px-5 py-4 mb-auto">
+    <div className="container mx-auto px-5 py-4 mb-auto">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="space-y-6 order-3 lg:order-2 lg:col-span-2">
