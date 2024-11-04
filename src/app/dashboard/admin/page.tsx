@@ -13,28 +13,34 @@ import {
 } from "@/services/apiAnalytics";
 import Spinner from "@/components/Spinner";
 
+// Main page component
 const Page = () => {
+  // Fetch analytics data using react-query for caching and managing loading state
   const { data: analyticsData, isLoading: isLoadingAnalytics } = useQuery({
     queryKey: ["analyticsData"],
     queryFn: () => fetchAnalyticsData(),
   });
 
+  // Fetch post metrics data with react-query
   const { data: postMetrics, isLoading: isLoadingPosts } = useQuery({
     queryKey: ["postMetrics"],
     queryFn: () => fetchPostMetrics(),
   });
 
+  // Fetch payment metrics data with react-query
   const { data: paymentMetrics, isLoading: isLoadingPayments } = useQuery({
     queryKey: ["paymentMetrics"],
     queryFn: () => fetchPaymentMetrics(),
   });
 
+  // Show loading spinner if any of the data is still loading
   if (isLoadingAnalytics || isLoadingPosts || isLoadingPayments) {
     return <Spinner />;
   }
 
-  const postDates = postMetrics?.map((item: { date: string }) =>
-    format(new Date(item.date), "MMM d")
+  // Process post metrics data for chart configuration
+  const postDates = postMetrics?.map(
+    (item: { date: string }) => format(new Date(item.date), "MMM d") // Format dates for better display
   );
   const postCounts = postMetrics?.map(
     (item: { postCount: number }) => item.postCount
@@ -46,6 +52,7 @@ const Page = () => {
     (item: { upvoteCount: number }) => item.upvoteCount
   );
 
+  // Define configuration for the post metrics chart
   const postChartConfig = {
     labels: postDates,
     datasets: [
@@ -73,6 +80,7 @@ const Page = () => {
     ],
   };
 
+  // Process payment metrics data for chart configuration
   const paymentDates = paymentMetrics?.map((item: { date: string }) =>
     format(new Date(item.date), "MMM d")
   );
@@ -93,6 +101,7 @@ const Page = () => {
 
   return (
     <section>
+      {/* Stats cards for displaying summary of users, posts, and categories */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-10">
         <StatsCard
           title="Users"
@@ -116,12 +125,16 @@ const Page = () => {
           textColor="text-yellow-500"
         />
       </div>
+
+      {/* Chart for displaying post metrics */}
       <div className="bg-secondary-background rounded-lg shadow-lg mb-8 p-5 lg:p-8">
         <h2 className="text-xl lg:text-2xl font-semibold text-center text-primary-text mb-5">
           Post Metrics
         </h2>
         <PostChart chartData={postChartConfig} />
       </div>
+
+      {/* Chart for displaying payment metrics */}
       <div className="bg-secondary-background rounded-lg shadow-lg mb-8 p-5 lg:p-8">
         <h2 className="text-xl lg:text-2xl  font-semibold text-center text-primary-text mb-5">
           Payment Metrics

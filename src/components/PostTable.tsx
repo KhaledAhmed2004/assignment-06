@@ -42,9 +42,7 @@ export interface TPost {
   title: string;
   content: string;
   author: Author; // Use the Author type
-  category: {
-    name: string; // Specify other properties if needed
-  };
+  category: string;
   images: string[];
   isPremium: boolean;
   upvotes: string[];
@@ -78,7 +76,12 @@ const PostTable = () => {
     return <ErrorMessage message={error.message} />;
   }
 
-  if (!posts.length) return <ErrorMessage message="No Posts Found" />;
+  if (!posts.length)
+    return (
+      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
+        No Posts Found
+      </h2>
+    );
 
   const PostItem = ({ post }: { post: TPost }) => {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -94,7 +97,7 @@ const PostTable = () => {
       return div.textContent || div.innerText || "";
     };
 
-    const maxLength = 100;
+    const maxLength = 150;
     const rawContent = stripHtmlTags(post.content); // Clean HTML tags
     const truncatedContent =
       rawContent.length > maxLength
@@ -151,41 +154,50 @@ const PostTable = () => {
     };
 
     return (
-      <div className="w-full p-6 bg-gradient-to-br from-white via-gray-50 to-gray-100 shadow-lg rounded-3xl mb-8 relative">
-        <div className="absolute top-4 right-4 cursor-pointer">
-          <FaEllipsisH
-            className="text-gray-700 hover:text-blue-600"
-            size={20}
-            onClick={handleMenuToggle}
-          />
-          {menuVisible && (
-            <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md z-10">
-              <button
-                onClick={() => {
-                  setModalIsOpen(true);
-                  setSelectedPost(post);
-                }}
-                className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                <FaEdit className="mr-2" /> Edit
-              </button>
-              <button
-                onClick={handleDelete}
-                className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                <FaTrashAlt className="mr-2" /> Delete
-              </button>
+      <div className="p-6 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 shadow-lg rounded-3xl mb-8 transition-transform duration-300 transform">
+        {/* Header section with menu icon and options */}
+        <div className="relative mb-4">
+          <div className="absolute top-4 right-4 cursor-pointer">
+            <FaEllipsisH
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              size={20}
+              onClick={handleMenuToggle}
+            />
+            {menuVisible && (
+              <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-700 shadow-lg rounded-md z-10">
+                <button
+                  onClick={() => {
+                    setModalIsOpen(true);
+                    setSelectedPost(post);
+                  }}
+                  className="flex items-center px-4 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 w-full text-left"
+                >
+                  <FaEdit className="mr-2" /> Edit
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="flex items-center px-4 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 w-full text-left"
+                >
+                  <FaTrashAlt className="mr-2" /> Delete
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Author Info and Premium Badge */}
+        <div className="flex justify-between items-center mb-4">
+          <PostAuthor author={post.author} postCreatedAt={post.createdAt} />
+        </div>
+        <div>
+          {isPremium && (
+            <div className="flex w-fit items-center space-x-1 bg-yellow-100 text-yellow-800 dark:bg-yellow-600 dark:text-yellow-100 px-2 py-1 rounded-full text-sm font-semibold">
+              <FaStar size={16} />
+              <span>Premium</span>
             </div>
           )}
         </div>
-
-        {isPremium && (
-          <div className="flex items-center space-x-1 bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm font-semibold mb-4">
-            <FaStar size={16} />
-            <span>Premium</span>
-          </div>
-        )}
-
+        {/* Post Link */}
         <Link
           href={
             !canAccessPremium && post.isPremium
@@ -193,18 +205,18 @@ const PostTable = () => {
               : `/post/${post._id}`
           }
         >
-          <h2 className="text-3xl font-extrabold text-gray-800 mb-3 hover:text-blue-600 transition duration-300">
+          {/* Title */}
+          <h2 className="text-3xl font-extrabold text-gray-800 dark:text-white mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">
             {post.title}
           </h2>
 
-          <div className="flex justify-between items-center mb-2">
-            <PostAuthor author={post?.author} postCreatedAt={post?.createdAt} />
-            <span className="text-xs text-blue-700 bg-blue-100 px-3 py-1 rounded-full">
-              {post.category.name}
-            </span>
-          </div>
+          {/* Category Badge */}
+          <span className="text-base text-blue-700 bg-blue-100 dark:text-white dark:bg-blue-600 px-3 py-1 rounded-full">
+            {post.category}
+          </span>
 
-          <div className="mt-4 bg-primary-background rounded-lg overflow-hidden relative">
+          {/* Post Image */}
+          <div className="mt-4 bg-primary-background rounded-lg overflow-hidden relative shadow-md transition-transform duration-300 transform hover:shadow-xl">
             <Image
               className="w-full h-64 object-cover transition-transform duration-300 transform hover:scale-105"
               src={post.images[0]}
@@ -223,8 +235,9 @@ const PostTable = () => {
             )}
           </div>
 
-          <div className="text-gray-700 mb-4">
-            {truncatedContent}
+          {/* Post Content */}
+          <div className="text-gray-700 dark:text-gray-300 mb-4">
+            <span dangerouslySetInnerHTML={{ __html: truncatedContent }} />
             {rawContent.length > maxLength && (
               <Link
                 href={
@@ -232,15 +245,15 @@ const PostTable = () => {
                     ? "/dashboard/user/payment"
                     : `/post/${post._id}`
                 }
-                className="text-blue-500 hover:underline font-medium"
+                className="text-blue-500 hover:underline font-medium dark:text-blue-400"
               >
-                {" "}
                 Read More
               </Link>
             )}
           </div>
         </Link>
 
+        {/* Post Interactions */}
         {post._id && (
           <PostMedia
             postUpvotes={post.upvotes}

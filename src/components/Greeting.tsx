@@ -41,12 +41,15 @@ const RightPart = () => {
         >
           Go to {user?.role === "admin" ? "Dashboard" : "My Profile"}
         </Button>
-        <button onClick={() => setModalIsOpen(true)}>
-          <div className="flex h-12 items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white transition-transform transform hover:scale-105 duration-300 rounded-lg p-3 cursor-pointer shadow-lg dark:bg-green-500 dark:hover:bg-green-600">
-            <FaPlusCircle className="text-lg" />
-            <span className="font-semibold">Create New Post</span>
-          </div>
-        </button>
+        {/* Conditionally Render "Create New Post" Button */}
+        {user && (
+          <button onClick={() => setModalIsOpen(true)}>
+            <div className="flex h-12 items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white transition-transform transform hover:scale-105 duration-300 rounded-lg p-3 cursor-pointer shadow-lg dark:bg-green-500 dark:hover:bg-green-600">
+              <FaPlusCircle className="text-lg" />
+              <span className="font-semibold">Create New Post</span>
+            </div>
+          </button>
+        )}
       </div>
       <PostModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </div>

@@ -6,7 +6,7 @@ import SearchFilter from "@/components/SearchFilter";
 const ManagePosts = () => {
   return (
     <section className="py-3 lg:py-5">
-      <h2 className="text-2xl lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
+      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
         Manage Posts
       </h2>
       <div className="space-y-4">

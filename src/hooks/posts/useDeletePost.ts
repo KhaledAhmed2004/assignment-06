@@ -11,7 +11,6 @@ export function useDeletePost() {
       queryClient.invalidateQueries({
         queryKey: ["posts"],
       });
-      toast.success("Post deleted successfully");
     },
     onError: (err) => {
       toast.error(err.message);

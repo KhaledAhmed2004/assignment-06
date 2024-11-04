@@ -1,5 +1,4 @@
 "use client";
-import ErrorMessage from "@/components/ErrorMessage";
 import RightPart from "@/components/Greeting";
 import Post from "@/components/Post";
 import SearchFilter from "@/components/SearchFilter";
@@ -20,7 +19,9 @@ const HomePage = () => {
           {isLoading ? (
             <Spinner className="my-4" />
           ) : posts?.length === 0 ? (
-            <ErrorMessage message={"No Posts Found"} />
+            <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
+              No Posts Found
+            </h2>
           ) : (
             <InfiniteScroll
               key={posts?.length}

@@ -42,7 +42,7 @@ const SearchFilter = () => {
           >
             <option value="">All</option>
             {categories?.map((category: { _id: string; name: string }) => (
-              <option key={category._id} value={category._id}>
+              <option key={category._id} value={category.name}>
                 {category.name}
               </option>
             ))}
