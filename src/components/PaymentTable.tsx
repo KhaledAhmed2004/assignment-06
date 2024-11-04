@@ -6,13 +6,13 @@ import { format } from "date-fns";
 const getStatusBadgeColor = (status: string) => {
   switch (status) {
     case "pending":
-      return "bg-primary-blue text-white";
+      return "text-white";
     case "completed":
-      return "bg-primary-green text-white";
+      return "text-white";
     case "failed":
-      return "bg-primary-red text-white";
+      return "text-white";
     default:
-      return "bg-secondary-grey text-white";
+      return "text-white";
   }
 };
 const PaymentTable = () => {
@@ -22,8 +22,8 @@ const PaymentTable = () => {
   if (!payments.length) return <ErrorMessage message={"No Payments Found"} />;
   return (
     <div className="shadow overflow-x-auto rounded-lg">
-      <table className="min-w-full text-sm text-secondary-text">
-        <thead className="bg-secondary-background text-xs uppercase font-medium text-primary-text">
+      <table className="min-w-full text-sm">
+        <thead className="text-xs uppercase font-medium">
           <tr>
             <th></th>
             <th
@@ -58,13 +58,13 @@ const PaymentTable = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-primary-background">
+        <tbody className="">
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {payments.map((payment: any, index: number) => (
             <tr
               key={payment._id}
               className={`${
-                index % 2 === 0 ? "bg-secondary-background bg-opacity-20" : ""
+                index % 2 === 0 ? "bg-opacity-20" : ""
               }`}
             >
               <td className="pl-4">{index + 1}</td>

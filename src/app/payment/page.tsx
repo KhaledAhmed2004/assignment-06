@@ -21,19 +21,19 @@ const Payment = () => {
 
   return (
     <section className="max-w-8xl mx-auto px-5">
-      <div className="rounded-lg shadow-md flex flex-col items-center justify-center bg-white text-primary-text py-16 px-8">
+      <div className="rounded-lg shadow-md flex flex-col items-center justify-center bg-white py-16 px-8">
         {user?.isVerified ? (
-          <FaCheckCircle className="text-8xl mb-6 text-primary-blue" />
+          <FaCheckCircle className="text-8xl mb-6" />
         ) : (
-          <FaCircleArrowUp className="text-8xl mb-6 text-primary-blue animate-bounce" />
+          <FaCircleArrowUp className="text-8xl mb-6 animate-bounce" />
         )}
 
-        <h2 className="text-3xl font-bold text-primary-text mb-4">
+        <h2 className="text-3xl font-bold mb-4">
           {user?.isVerified
             ? "You are already a premium user"
             : "Upgrade Your Plan"}
         </h2>
-        <p className="text-lg text-secondary-text">
+        <p className="text-lg">
           {user?.isVerified
             ? "You have access to all premium features and exclusive content"
             : "Get access to premium features and exclusive content by upgrading your plan."}

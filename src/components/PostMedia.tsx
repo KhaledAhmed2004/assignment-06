@@ -90,7 +90,7 @@ const PostMedia = ({
             className="flex items-center"
           >
             {userVote === "upvote" ? (
-              <BiSolidUpvote className="text-xl text-primary-blue" />
+              <BiSolidUpvote className="text-xl" />
             ) : (
               <BiUpvote className="text-xl" />
             )}
@@ -101,7 +101,7 @@ const PostMedia = ({
             className="flex items-center ml-4"
           >
             {userVote === "downvote" ? (
-              <BiSolidDownvote className="text-xl text-primary-blue" />
+              <BiSolidDownvote className="text-xl" />
             ) : (
               <BiDownvote className="text-xl" />
             )}

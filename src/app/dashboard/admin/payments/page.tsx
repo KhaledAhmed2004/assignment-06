@@ -72,7 +72,7 @@ const PaymentTablePage = () => {
     return <Alert message="No Payments Found" type="warning" showIcon />;
   return (
     <section className="py-3 lg:py-5">
-      <h2 className="text-2xl lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
+      <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
         Payments History
       </h2>
       <div className="shadow overflow-x-auto rounded-lg">

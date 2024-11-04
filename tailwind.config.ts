@@ -8,17 +8,7 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        "primary-background": "var(--primary-background)",
-        "secondary-background": "var(--secondary-background)",
-        "primary-text": "var(--primary-text)",
-        "secondary-text": "var(--secondary-text)",
-        "primary-green": "var(--primary-green)",
-        "primary-red": "var(--primary-red)",
-        "primary-blue": "var(--primary-blue)",
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };

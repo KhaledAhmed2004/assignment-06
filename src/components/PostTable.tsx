@@ -78,7 +78,7 @@ const PostTable = () => {
 
   if (!posts.length)
     return (
-      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center text-primary-text mb-5 lg:mb-8">
+      <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
         No Posts Found
       </h2>
     );
@@ -216,7 +216,7 @@ const PostTable = () => {
           </span>
 
           {/* Post Image */}
-          <div className="mt-4 bg-primary-background rounded-lg overflow-hidden relative shadow-md transition-transform duration-300 transform hover:shadow-xl">
+          <div className="mt-4 rounded-lg overflow-hidden relative shadow-md transition-transform duration-300 transform hover:shadow-xl">
             <Image
               className="w-full h-64 object-cover transition-transform duration-300 transform hover:scale-105"
               src={post.images[0]}

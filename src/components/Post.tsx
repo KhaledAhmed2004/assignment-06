@@ -61,7 +61,7 @@ const Post = ({ post }: any) => {
           {post.category}
         </span>
         {/* Post Image */}
-        <div className="mt-4 bg-primary-background rounded-lg overflow-hidden relative shadow-md transition-transform duration-300 transform hover:shadow-xl">
+        <div className="mt-4 rounded-lg overflow-hidden relative shadow-md transition-transform duration-300 transform hover:shadow-xl">
           <Image
             className="w-full h-64 object-cover transition-transform duration-300 transform hover:scale-105"
             src={post.images[0]}

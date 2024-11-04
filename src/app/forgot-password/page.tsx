@@ -2,11 +2,9 @@
 
 import Button from "@/components/Button";
 import { useForgotPassword } from "@/hooks/auth/useForgotPassword";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import forgotPasswordImage from "../../../assets/forgotpassword.svg";
+import { FiMail } from "react-icons/fi";
 
 interface IFormInput {
   email: string;
@@ -26,71 +24,57 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
-    <section className="container px-5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-primary-background py-8 lg:py-10 mx-auto">
-      <div className="">
-        <Image
-          src={forgotPasswordImage}
-          alt="Social media illustration"
-          className="w-auto h-auto md:h-[400px] mx-auto"
-        />
-      </div>
-      <div className="w-full p-6 lg:p-8  shadow-lg rounded-xl bg-secondary-background">
-        <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-3 text-primary-text">
+    <section className="flex items-center justify-center min-h-screen px-5 py-8 lg:py-10">
+      <div className="w-full max-w-md p-6 lg:p-8 shadow-lg rounded-xl bg-white">
+        <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-3">
           Forgot Password
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-text mb-2">
+            <label className="block text-sm font-semibold mb-2 text-gray-700">
               Email Address
             </label>
-            <input
-              type="email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                  message: "Invalid email format",
-                },
-              })}
-              className="w-full mb-0.5  rounded-md shadow-sm focus:border-primary-blue border outline-none py-1.5 lg:py-2 px-3"
-            />
+            <div className="relative">
+              <FiMail className="absolute top-1/2 transform -translate-y-1/2 left-3 text-gray-500" />
+              <input
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                    message: "Invalid email format",
+                  },
+                })}
+                className="w-full pl-10 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none py-2 px-3 transition duration-200"
+                placeholder="Enter your email"
+              />
+            </div>
             {errors.email && (
-              <p className="text-primary-red text-xs">{errors.email.message}</p>
+              <p className="text-red-500 text-xs mt-1">
+                *{errors.email.message}
+              </p>
             )}
           </div>
-
-          <Button className="w-full" loading={isPending} disabled={isPending}>
+          <Button
+            className="w-full bg-blue-500 text-white hover:bg-blue-600"
+            loading={isPending}
+            disabled={isPending}
+          >
             Submit
           </Button>
 
-          <div className="flex justify-end items-center text-sm text-secondary-text font-medium">
-            <label className="ml-2 block text-sm text-primary-text">
+          <div className="flex justify-end items-center text-sm font-medium">
+            <label className="ml-2 block text-sm">
               Remembered your password?{" "}
               <a
                 href="/sign-in"
-                className="text-secondary-text hover:text-primary-text transition-all duration-300 font-semibold"
+                className="transition-all duration-300 font-semibold"
               >
                 Sign In
               </a>
             </label>
           </div>
         </form>
-
-        <footer className="mt-4 text-center text-sm text-secondary-text font-medium">
-          <Link
-            href="/privacy-policy"
-            className="text-secondary-text hover:text-primary-text transition-all duration-300 font-semibold"
-          >
-            Privacy Policy
-          </Link>{" "}
-          <span className="text-primary-blue font-bold">|</span>{" "}
-          <Link
-            href="/terms-of-service"
-            className="text-secondary-text hover:text-primary-text transition-all duration-300 font-semibold"
-          >
-            Terms of Service
-          </Link>
-        </footer>
       </div>
     </section>
   );

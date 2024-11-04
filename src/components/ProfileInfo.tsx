@@ -107,7 +107,7 @@ const UserProfile = ({ user }: { user: IUser }) => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold text-secondary-text mb-6">
+      <h2 className="text-2xl font-semibold  mb-6">
         Profile Information
       </h2>
 
@@ -115,7 +115,7 @@ const UserProfile = ({ user }: { user: IUser }) => {
       <div className="flex items-center space-x-4 mb-6">
         <div
           {...getRootProps()}
-          className="relative border border-primary-blue p-1 rounded-full cursor-pointer transition-transform transform hover:scale-105"
+          className="relative border p-1 rounded-full cursor-pointer transition-transform transform hover:scale-105"
         >
           <input {...getInputProps()} />
 
@@ -133,7 +133,7 @@ const UserProfile = ({ user }: { user: IUser }) => {
                 width={80}
                 height={80}
               />
-              <FaCheckCircle className="absolute bottom-1 right-1 text-primary-blue text-xl" />
+              <FaCheckCircle className="absolute bottom-1 right-1 text-xl" />
               {isDragActive && (
                 <div className="absolute inset-0 bg-blue-200 bg-opacity-50 flex items-center justify-center rounded-full">
                   <p className="text-sm text-blue-700">Drop the image here</p>
@@ -143,11 +143,11 @@ const UserProfile = ({ user }: { user: IUser }) => {
           )}
         </div>
         <div>
-          <h3 className="text-xl font-medium text-primary-text">
+          <h3 className="text-xl font-medium">
             {user?.name}
           </h3>
-          <p className="text-sm text-secondary-text italic">{user?.email}</p>
-          <p className="text-xs text-primary-blue mt-1">
+          <p className="text-sm italic">{user?.email}</p>
+          <p className="text-xs mt-1">
             Click to change profile picture
           </p>
         </div>

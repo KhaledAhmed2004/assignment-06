@@ -27,7 +27,7 @@ const ResetPassword: React.FC = () => {
   };
 
   return (
-    <section className="container px-5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-primary-background py-8 lg:py-10 mx-auto">
+    <section className="container px-5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-8 lg:py-10 mx-auto">
       <div className="">
         <Image
           src={resetPasswordImage}
@@ -35,13 +35,13 @@ const ResetPassword: React.FC = () => {
           className="w-full h-100"
         />
       </div>
-      <div className="w-full p-6 lg:p-8  shadow-lg rounded-xl bg-secondary-background">
-        <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-3 text-primary-text">
+      <div className="w-full p-6 lg:p-8  shadow-lg rounded-xl">
+        <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-3">
           Reset Password
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-text mb-2">
+            <label className="block text-sm font-medium mb-2">
               New Password
             </label>
             <input
@@ -53,17 +53,17 @@ const ResetPassword: React.FC = () => {
                   message: "Password must be at least 6 characters",
                 },
               })}
-              className="w-full mb-0.5 rounded-md shadow-sm focus:border-primary-blue border outline-none py-1.5 lg:py-2 px-3"
+              className="w-full mb-0.5 rounded-md shadow-sm border outline-none py-1.5 lg:py-2 px-3"
             />
             {errors.password && (
-              <p className="text-primary-red text-xs">
+              <p className="text-xs">
                 *{errors.password.message}
               </p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-primary-text mb-2">
+            <label className="block text-sm font-medium mb-2">
               Confirm Password
             </label>
             <input
@@ -73,10 +73,10 @@ const ResetPassword: React.FC = () => {
                 validate: (value, { password }) =>
                   value === password || "Passwords must match",
               })}
-              className="w-full mb-0.5 rounded-md shadow-sm focus:border-primary-blue border outline-none py-1.5 lg:py-2 px-3"
+              className="w-full mb-0.5 rounded-md shadow-sm border outline-none py-1.5 lg:py-2 px-3"
             />
             {errors.confirmPassword && (
-              <p className="text-primary-red text-xs">
+              <p className="text-xs">
                 *{errors.confirmPassword.message}
               </p>
             )}

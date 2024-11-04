@@ -6,7 +6,7 @@ import { FaUserEdit } from "react-icons/fa";
 const Followers = ({ followers }: any) => {
   return (
     <div className="p-4 bg-white shadow-md rounded-lg">
-      <h2 className="text-xl font-semibold text-primary-text mb-3">
+      <h2 className="text-xl font-semibold mb-3">
         Followers
       </h2>
       {followers?.length === 0 && (

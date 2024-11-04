@@ -1,20 +1,20 @@
 import React from "react";
 
-const page = () => {
+const TermsOfService = () => {
   return (
     <div className="px-5">
-      <section className="container max-w-6xl px-5 mx-auto py-8 lg:py-10 bg-white rounded-lg shadow-md my-4 md:my-12">
-        <h2 className="text-4xl font-bold mb-4">Terms of Service</h2>
-        <p className="mb-6">Last updated: October 1, 2024</p>
+      <section className="container max-w-6xl px-5 mx-auto py-8 lg:py-10 bg-white my-4 md:my-12">
+        <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
+        <p className="mb-6">Last updated: October 17, 2024</p>
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">
             1. Acceptance of Terms
           </h2>
           <p>
-            By accessing and using the TechTalk platform (the “Service”), you
-            agree to comply with and be bound by these Terms of Service. If you
-            do not agree to these terms, you may not access the platform.
+            Welcome to TecQue! By accessing and using our platform, you agree to
+            adhere to these Terms of Service. If you do not agree with any part
+            of these terms, please refrain from using our services.
           </p>
         </section>
 
@@ -23,20 +23,22 @@ const page = () => {
             2. Changes to the Terms
           </h2>
           <p>
-            We reserve the right to modify or replace these Terms at any time.
-            Any changes will be effective upon posting to the Service. Continued
-            use of the Service after any such changes constitutes your
-            acceptance of the new Terms.
+            We may update these Terms from time to time to reflect changes in
+            our practices or for other operational, legal, or regulatory
+            reasons. Any modifications will be effective immediately upon
+            posting. Your continued use of the Service after any such changes
+            constitutes your acceptance of the new Terms.
           </p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">3. User Accounts</h2>
           <p>
-            To access certain features of the Service, you may be required to
-            register an account. You agree to provide accurate information and
-            to keep it up to date. You are responsible for safeguarding your
-            account, including the confidentiality of your login details.
+            To access certain features of our Service, you may be required to
+            create an account. You agree to provide accurate and complete
+            information and to update it as necessary. You are solely
+            responsible for maintaining the confidentiality of your account
+            credentials and for all activities that occur under your account.
           </p>
         </section>
 
@@ -45,23 +47,24 @@ const page = () => {
             4. User-Generated Content
           </h2>
           <p>
-            By submitting content (such as tips, reviews, or comments) to the
-            platform, you grant us a non-exclusive, royalty-free, perpetual
-            license to use, modify, and distribute your content. You are
-            responsible for ensuring that your submissions do not violate any
-            laws or third-party rights.
+            By submitting any content to our platform (including comments,
+            reviews, and feedback), you grant us a worldwide, non-exclusive,
+            royalty-free license to use, reproduce, and distribute that content.
+            You are responsible for ensuring your content does not violate any
+            laws or the rights of third parties.
           </p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">
-            5. Payment and Premium Content
+            5. Payment and Premium Services
           </h2>
           <p>
-            Some features of the Service may require payment. By purchasing
-            access to premium content, you agree to the pricing and payment
-            terms specified. Payments are processed securely via third-party
-            payment processors. We do not store any payment information.
+            Some features of the Service may be offered as premium services for
+            which you will be charged. By using these premium services, you
+            agree to pay all associated fees. Payments are processed securely
+            through third-party payment processors, and we do not store any
+            payment information.
           </p>
         </section>
 
@@ -70,10 +73,11 @@ const page = () => {
             6. Prohibited Activities
           </h2>
           <p>
-            You agree not to engage in any unlawful or unauthorized activities,
-            including but not limited to: spamming, hacking, impersonation, or
-            uploading malicious code. We reserve the right to terminate accounts
-            and access to the Service for any violations.
+            You agree not to engage in any unlawful or prohibited activities
+            while using our Service. This includes, but is not limited to,
+            spamming, hacking, impersonating others, or distributing harmful
+            software. Violation of this policy may result in account
+            termination.
           </p>
         </section>
 
@@ -82,9 +86,9 @@ const page = () => {
             7. Limitation of Liability
           </h2>
           <p>
-            The Service is provided `as is` and `as available` without
-            warranties of any kind. We will not be liable for any damages
-            arising from the use of the platform, including but not limited to
+            Our Service is provided on an &quot;as is&quot; and &quot;as
+            available&quot; basis without any warranties. We will not be liable
+            for any damages arising from your use of the Service, including
             indirect, incidental, or consequential damages.
           </p>
         </section>
@@ -92,18 +96,19 @@ const page = () => {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">8. Termination</h2>
           <p>
-            We may terminate or suspend your account and access to the Service
-            at any time, without prior notice or liability, for any reason,
-            including violation of these Terms.
+            We reserve the right to suspend or terminate your account and access
+            to the Service at our sole discretion, without prior notice or
+            liability, for any reason, including violations of these Terms.
           </p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">9. Governing Law</h2>
           <p>
-            These Terms shall be governed and construed in accordance with the
-            laws of [Your Jurisdiction], without regard to its conflict of law
-            provisions.
+            These Terms shall be governed by and construed in accordance with
+            the laws of [Your Jurisdiction]. Any disputes arising under these
+            Terms will be subject to the exclusive jurisdiction of the courts
+            located in [Your Location].
           </p>
         </section>
 
@@ -112,14 +117,15 @@ const page = () => {
             10. Contact Information
           </h2>
           <p>
-            If you have any questions about these Terms, please contact us at{" "}
+            If you have any questions or concerns about these Terms, please
+            contact us at{" "}
             <a
-              href="mailto:support@techtalk.com"
-              className="text-primary-blue hover:underline"
+              href="mailto:support@tecQue.com"
+              className="text-blue-500 hover:underline"
             >
-              support@techtalk.com
+              support@tecQue.com
             </a>
-            .
+            &nbsp;.
           </p>
         </section>
       </section>
@@ -127,4 +133,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default TermsOfService;

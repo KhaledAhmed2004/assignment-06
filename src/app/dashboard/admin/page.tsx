@@ -127,16 +127,16 @@ const Page = () => {
       </div>
 
       {/* Chart for displaying post metrics */}
-      <div className="bg-secondary-background rounded-lg shadow-lg mb-8 p-5 lg:p-8">
-        <h2 className="text-xl lg:text-2xl font-semibold text-center text-primary-text mb-5">
+      <div className="rounded-lg shadow-lg mb-8 p-5 lg:p-8">
+        <h2 className="text-xl lg:text-2xl font-semibold text-center mb-5">
           Post Metrics
         </h2>
         <PostChart chartData={postChartConfig} />
       </div>
 
       {/* Chart for displaying payment metrics */}
-      <div className="bg-secondary-background rounded-lg shadow-lg mb-8 p-5 lg:p-8">
-        <h2 className="text-xl lg:text-2xl  font-semibold text-center text-primary-text mb-5">
+      <div className="rounded-lg shadow-lg mb-8 p-5 lg:p-8">
+        <h2 className="text-xl lg:text-2xl  font-semibold text-center mb-5">
           Payment Metrics
         </h2>
         <PaymentChart chartData={paymentChartConfig} />

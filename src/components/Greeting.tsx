@@ -28,8 +28,8 @@ const RightPart = () => {
         <h2 className="text-xl font-bold mt-3 text-gray-900 dark:text-white">
           {user?.name || "Guest"}
         </h2>
-        <p className="text-gray-400 text-sm mt-1 dark:text-gray-300">
-          Lover of cars and tech
+        <p className="text-gray-400 text-center text-sm mt-1 dark:text-gray-300">
+          Lets share our knowledge
         </p>
       </div>
 
@@ -37,7 +37,7 @@ const RightPart = () => {
       <div className="flex flex-col gap-2">
         <Button
           className="text-sm h-12 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg shadow-md transition-transform transform hover:scale-105 duration-300 dark:bg-blue-500 dark:hover:bg-blue-600"
-          href={user?.role === "admin" ? "/dashboard/admin" : "/dashboard/user"}
+          href={user?.role === "admin" ? "/dashboard/admin" : "/user"}
         >
           Go to {user?.role === "admin" ? "Dashboard" : "My Profile"}
         </Button>

@@ -4,7 +4,7 @@ type ErrorMessageProps = {
 
 const ErrorMessage = ({ message }: ErrorMessageProps) => {
   return (
-    <h2 className="text-3xl text-center text-primary-text py-5 font-medium">
+    <h2 className="text-3xl text-center py-5 font-medium">
       {message}
     </h2>
   );
