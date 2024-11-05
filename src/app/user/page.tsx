@@ -11,14 +11,14 @@ const UserDashboard = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="">
+    <div className="max-w-7xl mx-auto mt-2">
       <div>
         <div className="col-span-2 space-y-6">
           <ProfileInfo user={user} />
         </div>
       </div>
       <section className="py-3 px-4 lg:py-5 lg:px-0 max-w-8xl mx-auto">
-        <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
+        <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
           My Posts
         </h2>
         <div className="space-y-4">

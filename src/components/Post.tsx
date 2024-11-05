@@ -47,7 +47,7 @@ const Post = ({ post }: any) => {
       <Link
         href={
           !canAccessPremium && post.isPremium
-            ? "/dashboard/user/payment"
+            ? "/payment"
             : `/post/${post._id}`
         }
       >

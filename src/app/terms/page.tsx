@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const TermsOfService = () => {
@@ -119,12 +120,12 @@ const TermsOfService = () => {
           <p>
             If you have any questions or concerns about these Terms, please
             contact us at{" "}
-            <a
+            <Link
               href="mailto:support@tecQue.com"
               className="text-blue-500 hover:underline"
             >
               support@tecQue.com
-            </a>
+            </Link>
             &nbsp;.
           </p>
         </section>

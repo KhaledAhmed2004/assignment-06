@@ -34,13 +34,14 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const baseClassName =
-    "rounded-xl px-5 py-2.5 transition-all duration-300 border  font-medium flex justify-center  items-center  focus:ring-2 focus:ring-opacity-50";
+    "rounded-xl px-5 py-2.5 border font-medium flex justify-center items-center focus:ring-2 focus:ring-opacity-50";
 
+  // Determine extra classes based on button state
   const extraClassName = disabled
-    ? "opacity-85"
+    ? "bg-secondary-background opacity-85"
     : outline
-    ? "bg-transparent"
-    : "hover:bg-transparent";
+    ? "bg-transparent hover:bg-primary-blue hover:text-primary-background text-primary-blue"
+    : "bg-blue-500 text-white hover:bg-blue-600"; // Adjusted for your case
 
   return (
     <button

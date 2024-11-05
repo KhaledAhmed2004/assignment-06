@@ -1,40 +1,31 @@
 import Link from "next/link";
 import React from "react";
 import { FiRefreshCw } from "react-icons/fi";
+import { GiCancel } from "react-icons/gi";
 
 const page = () => {
   return (
-    <section className="max-w-8xl  mx-auto px-5">
-      <div className=" rounded-lg shadow-md flex flex-col items-center justify-center bg-white py-16 px-8">
-        {/* SVG Error Image */}
-        <div className="w-32 h-32 mb-6">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="#ef5350"
-            className="w-full h-full"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM8.707 8.293a1 1 0 011.414 0L12 10.172l1.879-1.879a1 1 0 111.414 1.414L13.414 12l1.879 1.879a1 1 0 11-1.414 1.414L12 13.414l-1.879 1.879a1 1 0 11-1.414-1.414L10.586 12l-1.879-1.879a1 1 0 010-1.414z"
-            />
-          </svg>
+    <section className="max-w-8xl mx-auto px-5 mt-2">
+      <div className="rounded-2xl shadow-lg flex flex-col items-center justify-center bg-white dark:bg-gray-800 py-16 px-10 transition-transform duration-300 transform hover:shadow-xl ">
+        {/* Icon with animation */}
+        <div className="w-24 h-24 mb-6 text-red-600 dark:text-red-500 animate-pulse">
+          <GiCancel size="100%" />
         </div>
 
         {/* Unsuccessful Message */}
-        <h1 className="text-3xl font-bold mb-4">
+        <h1 className="text-4xl font-extrabold mb-4 text-red-600 dark:text-red-500">
           Payment Failed!
         </h1>
-        <p className="text-lg mb-8">
+        <p className="text-lg text-gray-600 dark:text-white mb-8 text-center">
           Unfortunately, we were unable to process your payment. Please try
           again.
         </p>
 
-        {/* Interactive Buttons */}
+        {/* Interactive Button */}
         <div className="flex space-x-4">
           <Link
-            href="/dashboard/user/payment"
-            className="text-white py-2 px-6 rounded-lg flex items-center hover:bg-[#128ef2] transition ease-in duration-300"
+            href="/payment"
+            className="bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800 text-white py-3 px-8 rounded-lg flex items-center shadow-md hover:shadow-xl hover:scale-105 transform transition ease-in duration-300"
           >
             Retry Payment
             <FiRefreshCw className="ml-2" size={20} />

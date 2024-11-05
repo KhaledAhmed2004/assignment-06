@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import { useForgotPassword } from "@/hooks/auth/useForgotPassword";
+import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FiMail } from "react-icons/fi";
@@ -66,12 +67,12 @@ const ForgotPassword: React.FC = () => {
           <div className="flex justify-end items-center text-sm font-medium">
             <label className="ml-2 block text-sm">
               Remembered your password?{" "}
-              <a
+              <Link
                 href="/sign-in"
                 className="transition-all duration-300 font-semibold"
               >
                 Sign In
-              </a>
+              </Link>
             </label>
           </div>
         </form>

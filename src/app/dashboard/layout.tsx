@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes, FaAmazonPay, FaUser } from "react-icons/fa";
+import {  FaAmazonPay, FaUser } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,7 +47,7 @@ export default function DashboardLayout({
     }
   }, [pathname, isMobile]);
 
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  // const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   const sidebarVariants = {
     open: { x: 0, opacity: 1 },
@@ -77,14 +77,14 @@ export default function DashboardLayout({
   return (
     <div className="flex min-h-screen dark:bg-gray-900">
       {/* Mobile Sidebar Toggle */}
-      <motion.button
-        className="lg:hidden fixed top-2/4 right-4 z-20 p-2 text-white rounded-full shadow-lg"
+      {/* <motion.button
+        className="lg:hidden fixed top-[15%] bg-blue-400 right-4 z-20 p-2 text-white rounded-full shadow-lg"
         onClick={toggleSidebar}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
         {isSidebarOpen ? <FaTimes /> : <FaBars />}
-      </motion.button>
+      </motion.button> */}
       {/* Sidebar */}
       <AnimatePresence>
         {(isSidebarOpen || !isMobile) && (

@@ -241,7 +241,7 @@ const PostDetails = () => {
                   ) : (
                     <p className="dark:text-gray-300 mt-3">{comment.text}</p>
                   )}
-                  {user._id === comment.author._id &&
+                  {user?._id === comment.author._id &&
                     editingCommentId !== comment._id && (
                       <div className="mt-2 flex justify-end space-x-2">
                         <button

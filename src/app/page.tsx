@@ -5,6 +5,7 @@ import SearchFilter from "@/components/SearchFilter";
 import Spinner from "@/components/Spinner";
 import { usePosts } from "@/hooks/posts/usePosts";
 import React from "react";
+import { FaSpinner } from "react-icons/fa";
 import InfiniteScroll from "react-infinite-scroller";
 
 const HomePage = () => {
@@ -17,8 +18,9 @@ const HomePage = () => {
         <div className="space-y-6 order-3 lg:order-2 lg:col-span-2">
           <SearchFilter />
           {isLoading ? (
-            // <Spinner className="my-4" />
-            "loading..."
+            <div className="flex items-center justify-center h-full">
+              <FaSpinner className="animate-spin dark:text-white" size={40} />
+            </div>
           ) : posts?.length === 0 ? (
             <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center mb-5 lg:mb-8">
               No Posts Found
@@ -34,7 +36,7 @@ const HomePage = () => {
               <div className="flex flex-col gap-4">
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {posts?.map((post: any) => (
-                  <Post key={post._id} post={post} />
+                  <Post key={post?._id} post={post} />
                 ))}
               </div>
             </InfiniteScroll>
