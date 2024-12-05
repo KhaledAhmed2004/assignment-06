@@ -54,7 +54,7 @@ const PostAuthor: React.FC<PostAuthorProps> = ({ author, postCreatedAt }) => {
           (followedUser: any) => followedUser?._id !== author?._id
         )
       : [
-          ...(user.following || []),
+          ...(user?.following || []),
           {
             _id: author?._id,
             name: author?.name,
@@ -85,17 +85,45 @@ const PostAuthor: React.FC<PostAuthorProps> = ({ author, postCreatedAt }) => {
   }, [isFollowing, user, author, updateCurrentUser, updateUser]);
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+    // <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+    //   <div className="flex items-center space-x-4">
+    //     <Image
+    //       className="w-10 h-10 rounded-full object-cover"
+    //       src={author?.profilePic}
+    //       alt={`${author?.name}'s profile picture`}
+    //       width={40}
+    //       height={40}
+    //     />
+    //     <div>
+    //       <div className="font-semibold text-gray-800 dark:text-white">
+    //         {author?.name}
+    //       </div>
+    //       <div className="text-xs text-gray-500 dark:text-gray-400">
+    //         {formatDistanceToNow(new Date(postCreatedAt), { addSuffix: true })}
+    //       </div>
+    //     </div>
+    //   </div>
+    //   {user && user?._id !== author?._id && (
+    //     <button
+    //       onClick={handleFollowUnfollow}
+    //       className="px-2 md:px-3 text-sm md:text-base py-1 text-white rounded-md border items-center bg-blue-700 border-blue-700 hover:bg-blue-600 dark:hover:text-white transition ease-in-out duration-300 flex space-x-2"
+    //     >
+    //       {isFollowing ? <FiUserMinus /> : <FiUserPlus />}
+    //       <span>{isFollowing ? "Unfollow" : "Follow"}</span>
+    //     </button>
+    //   )}
+    // </div>
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 p-4 border-b border-gray-200 dark:border-gray-700">
       <div className="flex items-center space-x-4">
         <Image
-          className="w-10 h-10 rounded-full object-cover"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
           src={author?.profilePic}
           alt={`${author?.name}'s profile picture`}
           width={40}
           height={40}
         />
         <div>
-          <div className="font-semibold text-gray-800 dark:text-white">
+          <div className="font-semibold text-gray-800 dark:text-white text-lg md:text-xl">
             {author?.name}
           </div>
           <div className="text-xs text-gray-500 dark:text-gray-400">
@@ -106,7 +134,7 @@ const PostAuthor: React.FC<PostAuthorProps> = ({ author, postCreatedAt }) => {
       {user && user?._id !== author?._id && (
         <button
           onClick={handleFollowUnfollow}
-          className="px-2 md:px-3 text-sm md:text-base py-1 text-white rounded-md border items-center bg-blue-700 border-blue-700 hover:bg-blue-600 dark:hover:text-white transition ease-in-out duration-300 flex space-x-2"
+          className="mt-2 md:mt-0 px-2 md:px-3 text-sm md:text-base py-1 text-white rounded-md border items-center bg-blue-700 border-blue-700 hover:bg-blue-600 dark:hover:text-white transition ease-in-out duration-300 flex space-x-2"
         >
           {isFollowing ? <FiUserMinus /> : <FiUserPlus />}
           <span>{isFollowing ? "Unfollow" : "Follow"}</span>

@@ -416,7 +416,7 @@ const Navbar = () => {
             )}
             <motion.button
               onClick={toggleDarkMode}
-              className="text-2xl text-white transition-colors duration-300 hover:scale-110"
+              className="text-2xl text-black dark:text-white transition-colors duration-300 hover:scale-110"
               whileHover={{ rotate: 20 }}
               whileTap={{ rotate: -20 }}
               aria-label="Toggle Dark Mode"
