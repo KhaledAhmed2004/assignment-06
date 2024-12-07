@@ -220,7 +220,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg py-4 transition-colors duration-300">
+    <nav className="bg-white dark:bg-gray-800 py-4 transition-colors duration-300">
       <div className="container mx-auto px-5">
         <div className="flex justify-between items-center">
           {/* Logo */}
